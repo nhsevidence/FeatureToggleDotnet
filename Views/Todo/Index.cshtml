@@ -1,0 +1,33 @@
+@model IEnumerable<FeatureToggleDotnet.Models.TodoItem>
+
+@{
+    ViewData["Title"] = "To Do";
+}
+<h1>@ViewData["Title"]</h1>
+
+<!DOCTYPE html>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Done)
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Done)
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
