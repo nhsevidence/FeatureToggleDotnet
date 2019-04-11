@@ -8,8 +8,9 @@ namespace FeatureToggleDotnet.Data
         {
             context.Database.EnsureCreated();
 
-            var todoItem = new TodoItem {Description = "Buy Milk", Done = false}; 
-            context.TodoItems.Add(todoItem);
+            context.TodoItems.Add(new TodoItem {Description = "Buy Milk", Done = true});
+            context.TodoItems.Add(new TodoItem {Description = "Buy Cheese", Done = true});
+            context.TodoItems.Add(new TodoItem {Description = "Buy Chocolate Cake", Done = true});
             context.SaveChanges();
         }
     }

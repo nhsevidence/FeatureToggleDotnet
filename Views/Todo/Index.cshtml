@@ -19,6 +19,12 @@
         <th>
             Done
         </th>
+        @if (Feature.IsFeatureEnabled("FTD-002-Remove-item"))
+        {
+            <th>
+                Delete
+            </th>
+        }
     </tr>
     </thead>
     <tbody>
@@ -30,11 +36,17 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Done)
             </td>
+            @if (Feature.IsFeatureEnabled("FTD-002-Remove-item"))
+            {
+                <td>
+                    <button type="button" class="btn btn-danger">Delete Item</button>
+                </td>
+            }
         </tr>
     }
     </tbody>
 </table>
 @if (Feature.IsFeatureEnabled("FTD-001-Add-item"))
 {
-    <partial name="/Views/Todo/_AddItem.cshtml" />
+    @await  Html.PartialAsync("_AddItem", new TodoItem())
 }
