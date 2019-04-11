@@ -1,8 +1,11 @@
-@model IEnumerable<FeatureToggleDotnet.Models.TodoItem>
+@using FeatureToggle.Interface
+@model FeatureToggleDotnet.Models.TodoViewModel
+@inject IFeature Feature
 
 @{
     ViewData["Title"] = "To Do";
 }
+
 <h1>@ViewData["Title"]</h1>
 
 <!DOCTYPE html>
@@ -11,15 +14,15 @@
     <thead>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            Description
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Done)
+            Done
         </th>
     </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model) {
+    @foreach (var item in Model.Items) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
@@ -31,3 +34,7 @@
     }
     </tbody>
 </table>
+@if (Feature.IsFeatureEnabled("FTD-001-Add-item"))
+{
+    <partial name="/Views/Todo/_AddItem.cshtml" />
+}

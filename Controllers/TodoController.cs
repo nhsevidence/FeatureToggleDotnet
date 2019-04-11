@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using FeatureToggleDotnet.Data;
+using FeatureToggleDotnet.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,7 +18,9 @@ namespace FeatureToggleDotnet.Controllers
         // GET
         public async Task<IActionResult> Index()
         {
-            return View(await _context.TodoItems.ToListAsync());
+            var todoItems = await _context.TodoItems.ToListAsync();
+            var model = new TodoViewModel() { Items = todoItems };
+            return View(model);
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FeatureToggle.AppSettings;
 using FeatureToggleDotnet.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,6 +34,7 @@ namespace FeatureToggleDotnet
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             services.AddDbContext<TodoContext>(opt => opt.UseInMemoryDatabase("TodoDb"));
+            services.AddFeatureToggle();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
